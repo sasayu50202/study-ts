@@ -51,19 +51,29 @@ const Home: NextPage = () => {
       <ul>
         {todos.map((todo) => (
           <li key={todo.id}>
-            <label>
-              <input
-                type="checkbox"
-                value={todo.id}
-                checked={todo.isDone}
-                onChange={toggle}
-              />
-              <span>{todo.label}</span>
-            </label>
+            <ListItem todo={todo} toggle={toggle} />
           </li>
         ))}
       </ul>
     </div>
+  );
+};
+type listTodo = {
+  todo: Todo;
+  toggle: ChangeEventHandler<HTMLInputElement>;
+};
+
+const ListItem = ({ todo, toggle }: listTodo) => {
+  return (
+    <label>
+      <input
+        type="checkbox"
+        value={todo.id}
+        checked={todo.isDone}
+        onChange={toggle}
+      />
+      <span>{todo.label}</span>
+    </label>
   );
 };
 export default Home;
